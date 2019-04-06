@@ -7,9 +7,26 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setUser(state, user) {
-    state.avatarUrl = user.avatarUrl
-    state.name = user.name
+  setUser(state, { name, avatarUrl }) {
+    state.avatarUrl = avatarUrl
+    state.name = name
+  },
+
+  setTokens(state, { accessToken, refreshToken }) {
+    localStorage.setItem('accessToken', accessToken)
+    localStorage.setItem('refreshToken', refreshToken)
+
+    this.$axios.setToken(accessToken, 'Bearer')
+  },
+
+  clear(state) {
+    state.avatarUrl = null
+    state.name = null
+
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
+
+    this.$axios.setToken(false)
   }
 }
 
@@ -27,10 +44,34 @@ const helpers = {
   async signIn(provider) {
     await firebase.auth().signInWithPopup(provider)
     return firebase.auth().currentUser.getIdToken()
+  },
+
+  decodeToken(token) {
+    return JSON.parse(atob(token.split('.')[1]))
   }
 }
 
 export const actions = {
+  async refresh({ commit, dispatch }) {
+    const accessToken = localStorage.getItem('accessToken')
+    const refreshToken = localStorage.getItem('refreshToken')
+
+    if (accessToken && refreshToken) {
+      const payload = helpers.decodeToken(accessToken)
+      const now = Math.floor(Date.now() / 1000)
+
+      if (payload.exp - now < 1800) {
+        const { auth, user } = await this.$axios.$put('/v1/sessions', { refreshToken })
+        commit('setTokens', auth)
+        commit('setUser', user)
+      } else {
+        commit('setTokens', { accessToken, refreshToken })
+        const user = await this.$axios.$get(`/v1/users/${payload.sub}`)
+        commit('setUser', user)
+      }
+    }
+  },
+
   loginWithTwitter({ dispatch, commit }) {
     dispatch('loginWith', new firebase.auth.TwitterAuthProvider())
   },
@@ -42,8 +83,13 @@ export const actions = {
   async loginWith({ dispatch, commit }, provider) {
     helpers.initializeFirebase()
 
-    const idToken = await helpers.signIn(provider)
-    const user = await dispatch('api/login', { idToken }, { root: true })
-    commit('setUser', user)
+    try {
+      const idToken = await helpers.signIn(provider)
+      const { auth, user } = await this.$axios.$post('/v1/users', { idToken })
+      commit('setTokens', auth)
+      commit('setUser', user)
+    } catch (e) {
+      commit('clear')
+    }
   }
 }

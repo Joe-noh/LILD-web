@@ -31,7 +31,6 @@ export default {
 
       try {
         await this.$store.dispatch(`currentUser/loginWith${provider}`)
-        console.log(this.$store.state.currentUser)
       } finally {
         this.isButtonsDisabled = false
       }
