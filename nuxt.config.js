@@ -1,5 +1,5 @@
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-const pkg = require('./package')
+const isProd = (process.env.NODE_ENV === 'production')
 
 module.exports = {
   mode: 'universal',
@@ -8,7 +8,7 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: 'Dream sharing SNS.' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -21,11 +21,13 @@ module.exports = {
   loading: { color: '#fff' },
   css: ['~/assets/style/app.styl'],
   plugins: ['@/plugins/vuetify'],
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/pwa'
-  ],
-  axios: {},
+  modules: ['@nuxtjs/axios', '@nuxtjs/pwa'],
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/v1': (isProd ? 'https://api.lild.app' : 'http://localhost:4000')
+  },
   build: {
     transpile: ['vuetify/lib'],
     plugins: [new VuetifyLoaderPlugin()],
