@@ -19,6 +19,6 @@ export const actions = {
   },
 
   post({ getters }, { path, params }) {
-    return this.$axios.post(path, params, { headers: getters.headers })
+    return this.$axios.$post(path, params, { headers: getters.headers })
   }
 }

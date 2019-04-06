@@ -5,6 +5,7 @@ export const state = () => ({
 
 export const actions = {
   async login({ dispatch }, params) {
-    await dispatch('api/login', { id_token: params.idToken }, { root: true })
+    const data = await dispatch('api/login', params, { root: true })
+    console.log(data)
   }
 }
