@@ -47,5 +47,10 @@ module.exports = {
         })
       }
     }
+  },
+  env: {
+    firebaseApiKey: isProd ? '' : 'AIzaSyCwQ0Qgjyg89dOpVRnKmXNNgNFfzuf7WJk',
+    firebaseDomain: isProd ? '' : 'lild-dev.firebaseapp.com',
+    firebaseProjectId: isProd ? 'lild' : 'lild-dev'
   }
 }

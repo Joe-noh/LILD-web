@@ -10,6 +10,7 @@ module.exports = {
   extends: ['@nuxtjs'],
   plugins: [],
   rules: {
-    'no-console': 1
+    'no-console': 1,
+    'vue/max-attributes-per-line': 0
   },
 }
