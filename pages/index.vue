@@ -3,10 +3,10 @@
     <logo />
 
     <v-layout shrink column justify-start align-center class="login-buttons">
-      <v-btn large block depressed color="#C44343" :disabled="isButtonsDisabled" class="text-none login-button" @click="loginWith('Google')">
+      <v-btn dark large block depressed color="#C44343" :disabled="isButtonsDisabled" class="text-none" @click="loginWith('Google')">
         Login with Google
       </v-btn>
-      <v-btn large block depressed color="#1A90D9" :disabled="isButtonsDisabled" class="text-none login-button" @click="loginWith('Twitter')">
+      <v-btn dark large block depressed color="#1A90D9" :disabled="isButtonsDisabled" class="text-none" @click="loginWith('Twitter')">
         Login with Twitter
       </v-btn>
     </v-layout>
@@ -43,8 +43,5 @@ export default {
 .login-buttons {
   width: 80%;
   max-width: 300px;
-}
-.login-button {
-  color: #FFFEFA;
 }
 </style>
