@@ -69,15 +69,19 @@ export const actions = {
         const user = await this.$axios.$get(`/v1/users/${payload.sub}`)
         commit('setUser', user)
       }
+      return true
+    } else {
+      commit('clear')
+      return false
     }
   },
 
   loginWithTwitter({ dispatch, commit }) {
-    dispatch('loginWith', new firebase.auth.TwitterAuthProvider())
+    return dispatch('loginWith', new firebase.auth.TwitterAuthProvider())
   },
 
   loginWithGoogle({ dispatch, commit }) {
-    dispatch('loginWith', new firebase.auth.GoogleAuthProvider())
+    return dispatch('loginWith', new firebase.auth.GoogleAuthProvider())
   },
 
   async loginWith({ dispatch, commit }, provider) {
