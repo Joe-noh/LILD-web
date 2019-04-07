@@ -20,7 +20,7 @@ module.exports = {
   },
   loading: { color: '#fff' },
   css: ['~/assets/style/app.styl', '~/assets/style/transition.styl'],
-  plugins: ['@/plugins/vuetify', '@/plugins/axios'],
+  plugins: ['@/plugins/vuetify', '@/plugins/axios', '@/plugins/filters'],
   modules: ['@nuxtjs/axios', '@nuxtjs/pwa'],
   axios: {
     proxy: true

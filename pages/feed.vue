@@ -1,18 +1,18 @@
 <template>
-  <v-layout column justify-start align-center fill-height>
-    <v-card v-for="dream in dreams" :key="dream.id">
-      {{ dream.body }}
-    </v-card>
-  </v-layout>
+  <dream-list :dreams="dreams" />
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import requireLogin from '@/mixins/require-login'
+import DreamList from '@/components/DreamList.vue'
 
 export default {
   layout: 'with-header',
   mixins: [requireLogin],
+  components: {
+    DreamList
+  },
   data() {
     return {
       isLoading: false
