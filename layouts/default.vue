@@ -7,9 +7,5 @@
 </template>
 
 <script>
-export default {
-  async mounted() {
-    await this.$store.dispatch('currentUser/refresh')
-  }
-}
+export default {}
 </script>

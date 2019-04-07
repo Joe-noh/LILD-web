@@ -24,9 +24,6 @@ export default {
     return {
       drawer: false
     }
-  },
-  async mounted() {
-    await this.$store.dispatch('currentUser/refresh')
   }
 }
 </script>

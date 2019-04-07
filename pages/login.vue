@@ -31,6 +31,7 @@ export default {
 
       try {
         await this.$store.dispatch(`currentUser/loginWith${provider}`)
+        this.$router.replace('/feed')
       } finally {
         this.isButtonsDisabled = false
       }
