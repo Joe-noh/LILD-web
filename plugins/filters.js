@@ -1,6 +1,4 @@
 import Vue from 'vue'
-import { parse, format } from 'date-fns'
+import { readableDate } from '~/filters/datetime'
 
-Vue.filter('readableDate', (date) => {
-  return format(parse(date), 'YYYY/M/D')
-})
+Vue.filter('readableDate', readableDate)
