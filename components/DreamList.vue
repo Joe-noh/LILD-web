@@ -1,6 +1,6 @@
 <template>
   <v-layout column justify-start align-center fill-height class="pl-2 pr-2">
-    <dream-card v-for="dream in dreams" :dream="dream" :key="dream.id" class="mt-3" />
+    <dream-card v-for="dream in dreams" :key="dream.id" :dream="dream" class="mt-3" />
   </v-layout>
 </template>
 
