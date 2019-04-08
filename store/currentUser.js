@@ -52,7 +52,7 @@ const helpers = {
 }
 
 export const actions = {
-  async refresh({ commit, dispatch }) {
+  async refresh({ state, commit, dispatch }) {
     const accessToken = localStorage.getItem('accessToken')
     const refreshToken = localStorage.getItem('refreshToken')
 
@@ -64,9 +64,9 @@ export const actions = {
         const { auth, user } = await this.$axios.$put('/v1/sessions', { refreshToken })
         commit('setTokens', auth)
         commit('setUser', user)
-      } else {
+      } else if (!state.name) {
         commit('setTokens', { accessToken, refreshToken })
-        const user = await this.$axios.$get(`/v1/users/${payload.sub}`)
+        const { user } = await this.$axios.$get(`/v1/users/${payload.sub}`)
         commit('setUser', user)
       }
       return true
