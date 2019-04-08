@@ -9,10 +9,10 @@ import DreamList from '@/components/DreamList.vue'
 
 export default {
   layout: 'with-header',
-  mixins: [requireLogin],
   components: {
     DreamList
   },
+  mixins: [requireLogin],
   data() {
     return {
       isLoading: false
