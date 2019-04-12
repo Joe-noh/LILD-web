@@ -1,34 +1,25 @@
 <template>
   <v-app light>
-    <v-navigation-drawer v-model="drawer" temporary app>
-      <v-list>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon>apps</v-icon>
-          </v-list-tile-action>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar dense app>
-      <v-toolbar-side-icon @click="drawer = !drawer" />
-    </v-toolbar>
+    <drawer-menu />
     <v-content>
       <dream-list :dreams="dreams" />
     </v-content>
-    <v-btn dark fixed bottom right fab to="/d/new">
-      <v-icon>add</v-icon>
-    </v-btn>
+    <new-dream-button />
   </v-app>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import requireLogin from '@/mixins/require-login'
-import DreamList from '@/components/DreamList.vue'
+import DrawerMenu from '@/components/smart/DrawerMenu.vue'
+import DreamList from '@/components/dumb/DreamList.vue'
+import NewDreamButton from '@/components/dumb/NewDreamButton.vue'
 
 export default {
   components: {
-    DreamList
+    DrawerMenu,
+    DreamList,
+    NewDreamButton
   },
   mixins: [requireLogin],
   data() {
