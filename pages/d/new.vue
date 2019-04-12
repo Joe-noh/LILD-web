@@ -20,6 +20,11 @@ export default {
     return {
       isSubmitting: false
     }
+  },
+  methods: {
+    back() {
+      this.$router.go(-1)
+    }
   }
 }
 </script>

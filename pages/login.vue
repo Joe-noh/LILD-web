@@ -1,26 +1,25 @@
 <template>
-  <v-app light>
-    <v-content>
-      <v-layout column justify-space-around align-center fill-height>
-        <logo />
+  <v-content>
+    <v-layout column justify-space-around align-center fill-height>
+      <logo />
 
-        <v-layout shrink column justify-start align-center class="login-buttons">
-          <v-btn dark large block depressed color="#C44343" :disabled="isButtonsDisabled" class="text-none" @click="loginWith('Google')">
-            Login with Google
-          </v-btn>
-          <v-btn dark large block depressed color="#1A90D9" :disabled="isButtonsDisabled" class="text-none" @click="loginWith('Twitter')">
-            Login with Twitter
-          </v-btn>
-        </v-layout>
+      <v-layout shrink column justify-start align-center class="login-buttons">
+        <v-btn dark large block depressed color="#C44343" :disabled="isButtonsDisabled" class="text-none" @click="loginWith('Google')">
+          Login with Google
+        </v-btn>
+        <v-btn dark large block depressed color="#1A90D9" :disabled="isButtonsDisabled" class="text-none" @click="loginWith('Twitter')">
+          Login with Twitter
+        </v-btn>
       </v-layout>
-    </v-content>
-  </v-app>
+    </v-layout>
+  </v-content>
 </template>
 
 <script>
 import Logo from '~/components/dumb/Logo.vue'
 
 export default {
+  layout: 'without-header',
   components: {
     Logo
   },

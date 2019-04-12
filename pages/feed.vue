@@ -1,6 +1,5 @@
 <template>
   <v-app light>
-    <drawer-menu />
     <v-content>
       <dream-list :dreams="dreams" />
     </v-content>
@@ -11,13 +10,11 @@
 <script>
 import { mapState } from 'vuex'
 import requireLogin from '@/mixins/require-login'
-import DrawerMenu from '@/components/smart/DrawerMenu.vue'
 import DreamList from '@/components/dumb/DreamList.vue'
 import NewDreamButton from '@/components/dumb/NewDreamButton.vue'
 
 export default {
   components: {
-    DrawerMenu,
     DreamList,
     NewDreamButton
   },
