@@ -10,16 +10,32 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar dense app>
-      <v-toolbar-side-icon @click="open = !open" />
+      <v-toolbar-side-icon v-if="trailing == 'menu'" @click="open = !open" />
+      <v-btn v-else-if="trailing == 'back'" icon @click="back">
+        <v-icon>arrow_back</v-icon>
+      </v-btn>
+
+      <v-toolbar-title>{{ title }}</v-toolbar-title>
     </v-toolbar>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data() {
     return {
       open: false
+    }
+  },
+  computed: mapState({
+    title: state => state.header.title,
+    trailing: state => state.header.trailing
+  }),
+  methods: {
+    back() {
+      this.$router.go(-1)
     }
   }
 }

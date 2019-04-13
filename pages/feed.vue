@@ -19,6 +19,7 @@ export default {
     NewDreamButton
   },
   mixins: [requireLogin],
+  transition: 'fade',
   data() {
     return {
       drawer: false,
@@ -29,6 +30,9 @@ export default {
     ...mapState({
       dreams: state => state.feed.dreams
     })
+  },
+  async fetch({ store }) {
+    await store.dispatch('header/feed')
   },
   mounted() {
     if (this.dreams.length === 0) {

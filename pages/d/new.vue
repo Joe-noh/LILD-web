@@ -21,6 +21,9 @@ export default {
       isSubmitting: false
     }
   },
+  async fetch({ store }) {
+    await store.dispatch('header/newDream')
+  },
   methods: {
     back() {
       this.$router.go(-1)

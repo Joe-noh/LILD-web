@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout column justify-start fill-height>
-      <dream-card v-for="dream in dreams" :dream="dream" :key="dream.id" />
+      <dream-card v-for="dream in dreams" :key="dream.id" :dream="dream" />
     </v-layout>
   </v-container>
 </template>
