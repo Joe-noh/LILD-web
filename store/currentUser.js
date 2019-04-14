@@ -2,14 +2,16 @@ import * as firebase from 'firebase/app'
 import 'firebase/auth'
 
 export const state = () => ({
-  avatarUrl: null,
-  name: null
+  id: null,
+  name: null,
+  avatarUrl: null
 })
 
 export const mutations = {
-  setUser(state, { name, avatarUrl }) {
-    state.avatarUrl = avatarUrl
+  setUser(state, { id, name, avatarUrl }) {
+    state.id = id
     state.name = name
+    state.avatarUrl = avatarUrl
   },
 
   setTokens(state, { accessToken, refreshToken }) {
@@ -20,8 +22,9 @@ export const mutations = {
   },
 
   clear(state) {
-    state.avatarUrl = null
+    state.id = null
     state.name = null
+    state.avatarUrl = null
 
     localStorage.removeItem('accessToken')
     localStorage.removeItem('refreshToken')

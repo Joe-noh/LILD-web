@@ -1,6 +1,6 @@
 export const state = () => ({
-  title: null,
-  trailing: null
+  title: '',
+  mode: ''
 })
 
 export const mutations = {
@@ -8,19 +8,19 @@ export const mutations = {
     state.title = title
   },
 
-  setTrailing(state, { trailing }) {
-    state.trailing = trailing
+  setMode(state, { mode }) {
+    state.mode = mode
   }
 }
 
 export const actions = {
   feed({ commit }) {
     commit('setTitle', { title: null })
-    commit('setTrailing', { trailing: 'menu' })
+    commit('setMote', { mode: 'feed' })
   },
 
   newDream({ commit }) {
     commit('setTitle', { title: null })
-    commit('setTrailing', { trailing: 'back' })
+    commit('setMode', { mode: 'dream/new' })
   }
 }

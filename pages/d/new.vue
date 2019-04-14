@@ -1,19 +1,19 @@
 <template>
   <v-app light>
     <v-content>
-      <form>
-        <p>aaaaaaa</p>
-        <input>
-      </form>
+      <dream-form />
     </v-content>
   </v-app>
 </template>
 
 <script>
 import requireLogin from '@/mixins/require-login'
+import DreamForm from '@/components/dumb/DreamForm.vue'
 
 export default {
-  components: {},
+  components: {
+    DreamForm
+  },
   mixins: [requireLogin],
   transition: 'fade',
   data() {
