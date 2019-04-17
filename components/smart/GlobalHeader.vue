@@ -9,7 +9,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar dense app>
+    <v-toolbar dense app color="#FFFEFA">
       <v-toolbar-side-icon v-if="showMenuButton" @click="open = !open" />
       <v-btn v-else-if="showBackButton" icon @click="back">
         <v-icon>arrow_back</v-icon>
