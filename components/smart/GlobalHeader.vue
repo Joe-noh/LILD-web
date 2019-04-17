@@ -19,7 +19,7 @@
 
       <v-spacer />
 
-      <v-btn v-if="showSubmitButton" depressed round small dark class="text-none" @click="submitDream">
+      <v-btn v-if="showSubmitButton" depressed round small dark class="text-none pl-3 pr-3" @click="submitDream">
         {{ submitButtonLabel }}
       </v-btn>
     </v-toolbar>
