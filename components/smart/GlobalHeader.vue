@@ -19,8 +19,8 @@
 
       <v-spacer />
 
-      <v-btn v-if="showSubmitButton" icon @click="submitDream">
-        <v-icon>check</v-icon>
+      <v-btn v-if="showSubmitButton" depressed round small dark class="text-none" @click="submitDream">
+        {{ submitButtonLabel }}
       </v-btn>
     </v-toolbar>
   </div>
@@ -48,6 +48,9 @@ export default {
     },
     showSubmitButton() {
       return this.mode.startsWith('dream/')
+    },
+    submitButtonLabel() {
+      return this.$store.state.dreamForm.secret ? 'Save as Private' : 'Save'
     }
   },
   methods: {

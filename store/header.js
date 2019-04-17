@@ -16,7 +16,7 @@ export const mutations = {
 export const actions = {
   feed({ commit }) {
     commit('setTitle', { title: null })
-    commit('setMote', { mode: 'feed' })
+    commit('setMode', { mode: 'feed' })
   },
 
   newDream({ commit }) {
