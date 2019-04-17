@@ -2,9 +2,9 @@
   <v-container>
     <v-layout column justify-start fill-height>
       <v-form class="form">
-        <v-text-field prepend-icon="calendar_today" type="date" @input="handleDateInput" />
-        <v-switch prepend-icon="visibility_off" @change="handleSecretChange" />
-        <v-textarea solo flat background-color="#FFFEFA" placeholder="How was your dream?" rows="7" class="mt-3" @input="handleBodyInput" />
+        <v-text-field prepend-icon="calendar_today" type="date" :value="initialDate" @input="handleDateInput" />
+        <v-switch prepend-icon="visibility_off" :value="initialSecret" @change="handleSecretChange" />
+        <v-textarea solo flat background-color="#FFFEFA" placeholder="How was your dream?" rows="7" class="mt-3" :value="initialBody" @input="handleBodyInput" />
       </v-form>
     </v-layout>
   </v-container>
@@ -18,6 +18,23 @@ export default {
       secret: false,
       body: ''
     }
+  },
+  props: {
+    initialDate: {
+      required: true,
+      type: String
+    },
+    initialSecret: {
+      required: true,
+      type: Boolean
+    },
+    initialBody: {
+      required: true,
+      type: String
+    }
+  },
+  mounted() {
+    this.handleDateInput(this.initialDate)
   },
   methods: {
     handleDateInput(date) {

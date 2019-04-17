@@ -29,5 +29,11 @@ export const actions = {
     } catch (e) {
       console.log(e)
     }
+  },
+
+  clear({ commit }) {
+    commit('setDate', { date: null })
+    commit('setSecret', { secret: false })
+    commit('setBody', { body: '' })
   }
 }
