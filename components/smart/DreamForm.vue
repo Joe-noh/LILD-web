@@ -4,7 +4,7 @@
       <v-form class="form">
         <v-text-field prepend-icon="calendar_today" type="date" :value="date" @input="handleDateInput" />
         <v-switch prepend-icon="visibility_off" :value="secret" @change="handleSecretChange" />
-        <v-textarea solo flat background-color="#FFFEFA" placeholder="How was your dream?" rows="7" class="mt-3" :value="body" @input="handleBodyInput" />
+        <v-textarea solo flat :background-color="colors.white" placeholder="How was your dream?" rows="7" class="mt-3" :value="body" @input="handleBodyInput" />
       </v-form>
     </v-layout>
   </v-container>
@@ -12,8 +12,10 @@
 
 <script>
 import { mapState } from 'vuex'
+import colors from '@/mixins/colors'
 
 export default {
+  mixins: [colors],
   computed: mapState({
     date: state => state.dreamForm.date,
     secret: state => state.dreamForm.secret,
