@@ -9,7 +9,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar dense app color="#FFFEFA">
+    <v-toolbar dense app :color="colors.white">
       <v-toolbar-side-icon v-if="showMenuButton" @click="open = !open" />
       <v-btn v-else-if="showBackButton" icon @click="back">
         <v-icon>arrow_back</v-icon>
@@ -28,8 +28,10 @@
 
 <script>
 import { mapState } from 'vuex'
+import colors from '@/mixins/colors'
 
 export default {
+  mixins: [colors],
   data() {
     return {
       open: false
