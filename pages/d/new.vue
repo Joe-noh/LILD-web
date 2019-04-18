@@ -1,7 +1,7 @@
 <template>
   <v-app light>
     <v-content>
-      <dream-form :initial-date="today" :initial-secret="false" initial-body="" />
+      <dream-form />
     </v-content>
   </v-app>
 </template>
@@ -9,7 +9,7 @@
 <script>
 import { format } from 'date-fns'
 import requireLogin from '@/mixins/require-login'
-import DreamForm from '@/components/dumb/DreamForm.vue'
+import DreamForm from '@/components/smart/DreamForm.vue'
 
 export default {
   components: {
@@ -22,14 +22,11 @@ export default {
       isSubmitting: false
     }
   },
-  computed: {
-    today() {
-      return format(new Date(), 'YYYY-MM-DD')
-    }
-  },
   async fetch({ store }) {
+    const today = format(new Date(), 'YYYY-MM-DD')
+
     await store.dispatch('header/newDream')
-    await store.dispatch('dreamForm/clear')
+    await store.dispatch('dreamForm/initialize', { date: today })
   },
   methods: {
     back() {

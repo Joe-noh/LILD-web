@@ -31,9 +31,9 @@ export const actions = {
     }
   },
 
-  clear({ commit }) {
-    commit('setDate', { date: null })
-    commit('setSecret', { secret: false })
-    commit('setBody', { body: '' })
+  initialize({ commit, dispatch }, { date, secret, body }) {
+    commit('setDate', { date: date || null })
+    commit('setSecret', { secret: secret || false })
+    commit('setBody', { body: body || '' })
   }
 }
