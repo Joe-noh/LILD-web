@@ -1,20 +1,28 @@
 <template>
-  <dream-list :dreams="dreams" />
+  <v-app light>
+    <v-content>
+      <dream-list :dreams="dreams" />
+    </v-content>
+    <new-dream-button />
+  </v-app>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import requireLogin from '@/mixins/require-login'
-import DreamList from '@/components/DreamList.vue'
+import DreamList from '@/components/dumb/DreamList.vue'
+import NewDreamButton from '@/components/dumb/NewDreamButton.vue'
 
 export default {
-  layout: 'with-header',
   components: {
-    DreamList
+    DreamList,
+    NewDreamButton
   },
   mixins: [requireLogin],
+  transition: 'fade',
   data() {
     return {
+      drawer: false,
       isLoading: false
     }
   },
@@ -22,6 +30,9 @@ export default {
     ...mapState({
       dreams: state => state.feed.dreams
     })
+  },
+  async fetch({ store }) {
+    await store.dispatch('header/feed')
   },
   mounted() {
     if (this.dreams.length === 0) {

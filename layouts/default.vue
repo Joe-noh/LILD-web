@@ -1,7 +1,17 @@
 <template>
   <v-app light>
-    <v-content>
-      <nuxt />
-    </v-content>
+    <global-header />
+
+    <nuxt />
   </v-app>
 </template>
+
+<script>
+import GlobalHeader from '@/components/smart/GLobalHeader.vue'
+
+export default {
+  components: {
+    GlobalHeader
+  }
+}
+</script>

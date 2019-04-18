@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-3 mt-3 dream-card">
+  <v-card class="pa-3 mb-3 fluid dream-card">
     <v-layout row align-start>
       <v-avatar size="36" class="mr-3">
         <img :src="dream.user.avatarUrl">
@@ -38,7 +38,6 @@ export default {
 <style lang="stylus" scoped>
 .dream-card
   background: $lild-colors.white
-  width: 100%
 
 .dream-card__body
   font-family: serif

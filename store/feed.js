@@ -15,6 +15,10 @@ export const mutations = {
     state.dreams.concat(dreams)
   },
 
+  prependDream(state, { dream }) {
+    state.dreams.unshift(dream)
+  },
+
   setCursor(state, { cursor }) {
     state.cursor = cursor
   }
