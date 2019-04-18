@@ -59,8 +59,13 @@ export default {
     back() {
       this.$router.go(-1)
     },
-    submitDream() {
-      this.$store.dispatch('dreamForm/create')
+    async submitDream() {
+      try {
+        await this.$store.dispatch('dreamForm/create')
+        this.$router.replace('/feed')
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 }

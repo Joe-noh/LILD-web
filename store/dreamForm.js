@@ -19,13 +19,12 @@ export const mutations = {
 }
 
 export const actions = {
-  async create({ state, rootState }) {
-    console.log(state)
+  async create({ state, commit, rootState }) {
     const userId = rootState.currentUser.id
 
     try {
       const { dream } = await this.$axios.$post(`/v1/users/${userId}/dreams`, { dream: state })
-      console.log(dream)
+      commit('feed/prependDream', { dream }, { root: true })
     } catch (e) {
       console.log(e)
     }
