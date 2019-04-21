@@ -1,7 +1,8 @@
 export const state = () => ({
   date: null,
   secret: false,
-  body: ''
+  body: '',
+  tags: []
 })
 
 export const mutations = {
@@ -15,6 +16,10 @@ export const mutations = {
 
   setBody(state, { body }) {
     state.body = body
+  },
+
+  setTags(state, { tags }) {
+    state.tags = tags
   }
 }
 
@@ -30,9 +35,10 @@ export const actions = {
     }
   },
 
-  initialize({ commit, dispatch }, { date, secret, body }) {
+  initialize({ commit, dispatch }, { date, secret, body, tags }) {
     commit('setDate', { date: date || null })
     commit('setSecret', { secret: secret || false })
     commit('setBody', { body: body || '' })
+    commit('setTags', { tags: tags || [{ name: 'nightmare' }] })
   }
 }
