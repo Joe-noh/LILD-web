@@ -1,7 +1,7 @@
 <template>
   <v-app light>
     <v-content>
-      <dream-form />
+      <dream-form :show-tag-modal="showTagModal" @toggle-modal="showTagModal = !showTagModal" />
     </v-content>
   </v-app>
 </template>
@@ -19,7 +19,7 @@ export default {
   transition: 'fade',
   data() {
     return {
-      isSubmitting: false
+      showTagModal: false
     }
   },
   async fetch({ store }) {
@@ -28,9 +28,12 @@ export default {
     await store.dispatch('header/newDream')
     await store.dispatch('dreamForm/initialize', { date: today })
   },
-  methods: {
-    back() {
-      this.$router.go(-1)
+  beforeRouteLeave(to, from, next) {
+    if (this.showTagModal) {
+      this.showTagModal = false
+      next(false)
+    } else {
+      next()
     }
   }
 }
