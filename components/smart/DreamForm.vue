@@ -6,7 +6,7 @@
         <v-switch prepend-icon="visibility_off" :value="secret" @change="handleSecretChange" />
         <v-textarea solo flat :background-color="colors.white" placeholder="How was your dream?" rows="7" class="mt-3" :value="body" @input="handleBodyInput" />
         <div @click.stop="toggleTagModal">
-          <v-chip v-if="tags.length === 0" :color="colors.red" dark>
+          <v-chip v-if="tags.length === 0" :color="colors.red" dark outline>
             Add Tags
           </v-chip>
           <template v-else>
@@ -14,11 +14,6 @@
               #{{ tag.name }}
             </v-chip>
           </template>
-          <v-chip :color="colors.red" dark class="tag-chip">
-            <v-icon small>
-              add
-            </v-icon>
-          </v-chip>
         </div>
       </v-form>
     </v-layout>
