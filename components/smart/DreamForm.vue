@@ -93,7 +93,11 @@ export default {
   }),
   watch: {
     search(val) {
-      this.$store.dispatch('dreamForm/search', { query: val })
+      if (val && (val.includes(' ') || val.includes('　'))) {
+        this.handleTagging(val.trim())
+      } else {
+        this.$store.dispatch('dreamForm/search', { query: val })
+      }
     }
   },
   methods: {
