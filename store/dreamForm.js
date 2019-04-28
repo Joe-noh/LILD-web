@@ -77,6 +77,6 @@ export const actions = {
     commit('setDate', { date: date || null })
     commit('setSecret', { secret: secret || false })
     commit('setBody', { body: body || '' })
-    commit('setTags', { tags: tags || [{ name: 'nightmare' }] })
+    commit('setTags', { tags: tags || [] })
   }
 }
