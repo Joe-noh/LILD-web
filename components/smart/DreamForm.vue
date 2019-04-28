@@ -5,32 +5,41 @@
         <v-text-field prepend-icon="calendar_today" type="date" :value="date" @input="handleDateInput" />
         <v-switch prepend-icon="visibility_off" :value="secret" @change="handleSecretChange" />
         <v-textarea solo flat :background-color="colors.white" placeholder="How was your dream?" rows="7" class="mt-3" :value="body" @input="handleBodyInput" />
-        <div>
-          <v-chip v-if="tags.length === 0" :color="colors.red" dark @click.stop="toggleTagModal">
+        <div @click.stop="toggleTagModal">
+          <v-chip v-if="tags.length === 0" :color="colors.red" dark>
             Add Tags
           </v-chip>
           <template v-else>
-            <v-chip v-for="tag in tags" :key="tag.name" class="tag-chip" outline :text-color="colors.red" @click="handleTagClick(tag)">
+            <v-chip v-for="tag in tags" :key="tag.name" class="tag-chip" outline :text-color="colors.red">
               #{{ tag.name }}
             </v-chip>
           </template>
-          <v-chip :color="colors.red" dark class="tag-chip" @click.stop="toggleTagModal">
+          <v-chip :color="colors.red" dark class="tag-chip">
             <v-icon small>
               add
             </v-icon>
           </v-chip>
-          <v-dialog v-model="showTagModal" fullscreen hide-overlay transition="dialog-bottom-transition">
-            <v-card>
-              <v-toolbar dense :color="colors.white">
-                <v-btn icon @click="toggleTagModal">
-                  <v-icon>close</v-icon>
-                </v-btn>
-              </v-toolbar>
-            </v-card>
-          </v-dialog>
         </div>
       </v-form>
     </v-layout>
+
+    <v-dialog v-model="showTagModal" fullscreen transition="dialog-bottom-transition">
+      <v-card :color="colors.offWhite">
+        <v-toolbar dense :color="colors.white">
+          <v-btn icon @click="toggleTagModal">
+            <v-icon>close</v-icon>
+          </v-btn>
+        </v-toolbar>
+        <div class="new-tag-form">
+          <v-autocomplete background-color="transparent" hide-details single-line flat autofocus prepend-inner-icon="search"></v-autocomplete>
+          <div class="tag-chips-wrapper">
+            <v-chip v-for="tag in tags" :key="tag.name" class="tag-chip" close outline :text-color="colors.red" @input="handleTagClick(tag)">
+              #{{ tag.name }}
+            </v-chip>
+          </div>
+        </div>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -78,4 +87,10 @@ export default {
 
 .tag-chip
   cursor: pointer
+
+.new-tag-form
+  padding: 0 16px
+
+.tag-chips-wrapper
+  margin-top: 16px
 </style>
