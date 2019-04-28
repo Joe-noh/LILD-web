@@ -21,7 +21,7 @@
           </v-chip>
           <v-dialog v-model="showTagModal" fullscreen hide-overlay transition="dialog-bottom-transition">
             <v-card>
-              <v-toolbar dense app :color="colors.white">
+              <v-toolbar dense :color="colors.white">
                 <v-btn icon @click="toggleTagModal">
                   <v-icon>close</v-icon>
                 </v-btn>
