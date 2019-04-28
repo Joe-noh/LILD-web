@@ -35,9 +35,7 @@ export default {
     await store.dispatch('header/feed')
   },
   mounted() {
-    if (this.dreams.length === 0) {
-      this.$store.dispatch('feed/fetchDreams')
-    }
+    this.$store.dispatch('feed/fetchDreams')
   }
 }
 </script>
