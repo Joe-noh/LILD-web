@@ -5,9 +5,7 @@
         <img :src="dream.user.avatarUrl">
       </v-avatar>
       <v-layout column>
-        <p class="dream-card__body mb-2">
-          {{ dream.body }}
-        </p>
+        <p class="dream-card__body mb-2">{{ dream.body }}</p>
         <v-layout row wrap class="mb-2">
           <a v-for="tag in dream.tags" :key="tag.id" class="mr-1 dream-card__tag">
             #{{ tag.name }}
@@ -43,6 +41,7 @@ export default {
   font-family: serif
   font-size: 11pt
   overflow-wrap: break-word
+  white-space: pre-wrap
   line-height: 1.8
 
 .dream-card__tag
@@ -51,7 +50,7 @@ export default {
   color: $lild-colors.red
   overflow: auto;
   overflow-wrap: break-word
-  line-height: 1.3
+  line-height: 1.5
 
 .dream-card__visibility
   color: $lild-colors.gray
