@@ -9,7 +9,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import requireLogin from '@/mixins/require-login'
 import DreamList from '@/components/dumb/DreamList.vue'
 import NewDreamButton from '@/components/dumb/NewDreamButton.vue'
 
@@ -18,7 +17,6 @@ export default {
     DreamList,
     NewDreamButton
   },
-  mixins: [requireLogin],
   transition: 'fade',
   data() {
     return {
