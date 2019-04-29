@@ -3,7 +3,10 @@
     <v-content>
       <dream-list :dreams="dreams" />
       <no-ssr>
-        <infinite-loading @infinite="fetchMore" />
+        <infinite-loading spinner="spiral" @infinite="fetchMore">
+          <div slot="no-more"></div>
+          <div slot="no-results">No dreams yet.</div>
+        </infinite-loading>
       </no-ssr>
     </v-content>
     <new-dream-button v-if="isLoggedIn" />
