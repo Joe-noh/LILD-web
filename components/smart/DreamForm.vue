@@ -127,6 +127,7 @@ export default {
   cursor: pointer
 
 .new-tag-form
+  font-family: serif
   padding: 0 16px
 
 .tag-chips-wrapper
