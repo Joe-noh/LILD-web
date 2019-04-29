@@ -32,9 +32,7 @@
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-divider />
-
-        <v-list-tile @click="logout">
+        <v-list-tile @click="logout" class="logout-tile">
           <v-list-tile-content>
             <v-list-tile-title>Logout</v-list-tile-title>
           </v-list-tile-content>
@@ -155,5 +153,9 @@ export default {
 
 <style lang="stylus" scoped>
 .drawer
-  background-color: $lild-colors.off-white
+  background-color: $lild-colors.white !important
+
+.logout-tile
+  position: absolute
+  bottom: 0
 </style>
