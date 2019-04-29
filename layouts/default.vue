@@ -7,11 +7,14 @@
 </template>
 
 <script>
-import GlobalHeader from '@/components/smart/GLobalHeader.vue'
+import GlobalHeader from '@/components/smart/GlobalHeader.vue'
 
 export default {
   components: {
     GlobalHeader
+  },
+  mounted() {
+    this.$store.dispatch('currentUser/refresh')
   }
 }
 </script>
