@@ -3,7 +3,7 @@
     <v-content>
       <dream-list :dreams="dreams" />
     </v-content>
-    <new-dream-button />
+    <new-dream-button v-if="isLoggedIn" />
   </v-app>
 </template>
 
@@ -26,7 +26,8 @@ export default {
   },
   computed: {
     ...mapState({
-      dreams: state => state.feed.dreams
+      dreams: state => state.feed.dreams,
+      isLoggedIn: state => state.currentUser.isLoggedIn
     })
   },
   async fetch({ store }) {

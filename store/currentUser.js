@@ -4,7 +4,8 @@ import 'firebase/auth'
 export const state = () => ({
   id: null,
   name: null,
-  avatarUrl: null
+  avatarUrl: null,
+  isLoggedIn: false
 })
 
 export const mutations = {
@@ -12,6 +13,7 @@ export const mutations = {
     state.id = id
     state.name = name
     state.avatarUrl = avatarUrl
+    state.isLoggedIn = true
   },
 
   setTokens(state, { accessToken, refreshToken }) {
@@ -25,6 +27,7 @@ export const mutations = {
     state.id = null
     state.name = null
     state.avatarUrl = null
+    state.isLoggedIn = false
 
     localStorage.removeItem('accessToken')
     localStorage.removeItem('refreshToken')
@@ -98,5 +101,9 @@ export const actions = {
     } catch (e) {
       commit('clear')
     }
+  },
+
+  logout({ commit }) {
+    commit('clear')
   }
 }
