@@ -142,7 +142,7 @@ export default {
     async logout() {
       this.open = false
       await this.$store.dispatch('currentUser/logout')
-      this.$router.replace('/')
+      location.href = '/'
     },
     async submitDream() {
       try {

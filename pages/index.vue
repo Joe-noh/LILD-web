@@ -2,6 +2,9 @@
   <v-app light>
     <v-content>
       <dream-list :dreams="dreams" />
+      <no-ssr>
+        <infinite-loading @infinite="fetchMore" />
+      </no-ssr>
     </v-content>
     <new-dream-button v-if="isLoggedIn" />
   </v-app>
@@ -9,13 +12,15 @@
 
 <script>
 import { mapState } from 'vuex'
+import infiniteLoading from 'vue-infinite-loading'
 import DreamList from '@/components/dumb/DreamList.vue'
 import NewDreamButton from '@/components/dumb/NewDreamButton.vue'
 
 export default {
   components: {
     DreamList,
-    NewDreamButton
+    NewDreamButton,
+    infiniteLoading
   },
   transition: 'fade',
   data() {
@@ -27,14 +32,27 @@ export default {
   computed: {
     ...mapState({
       dreams: state => state.feed.dreams,
-      isLoggedIn: state => state.currentUser.isLoggedIn
+      isLoggedIn: state => state.currentUser.isLoggedIn,
+      hasMoreDreams: state => state.feed.hasMore
     })
   },
   async fetch({ store }) {
     await store.dispatch('header/feed')
   },
-  mounted() {
-    this.$store.dispatch('feed/fetchDreams')
+  methods: {
+    async fetchMore(infiniteLoader) {
+      try {
+        await this.$store.dispatch('feed/fetchMoreDreams')
+      } catch (e) {
+        console.log(e)
+      } finally {
+        if (this.hasMoreDreams) {
+          infiniteLoader.loaded()
+        } else {
+          infiniteLoader.complete()
+        }
+      }
+    }
   }
 }
 </script>
