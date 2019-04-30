@@ -11,7 +11,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Dream sharing SNS.' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=Material+Icons'
@@ -26,7 +26,7 @@ module.exports = {
     proxy: true
   },
   proxy: {
-    '/v1': (isProd ? 'https://api.lild.app' : 'http://localhost:4000')
+    '/v1': (isProd ? 'https://lild-api.herokuapp.com' : 'http://localhost:4000')
   },
   build: {
     transpile: ['vuetify/lib'],
