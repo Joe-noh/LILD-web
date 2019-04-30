@@ -4,8 +4,10 @@
       <dream-list :dreams="dreams" />
       <no-ssr>
         <infinite-loading spinner="spiral" @infinite="fetchMore">
-          <div slot="no-more"></div>
-          <div slot="no-results">No dreams yet.</div>
+          <div slot="no-more" />
+          <div slot="no-results">
+            No dreams yet.
+          </div>
         </infinite-loading>
       </no-ssr>
     </v-content>

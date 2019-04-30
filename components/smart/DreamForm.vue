@@ -38,14 +38,15 @@
             single-line
             :items="searchResult"
             :hide-no-data="!search"
-            :search-input.sync="search">
+            :search-input.sync="search"
+          >
             <v-list-tile slot="no-data" @click="handleTagging(search)">
               <v-list-tile-content>
                 <v-list-tile-title>Create new tag #{{ search }}</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
             <template v-slot:item="item">
-              <div @click="handleTagging(item.item.name)" style="width: 100%;">
+              <div class="tag-candidate" @click="handleTagging(item.item.name)">
                 {{ item.item.name }}
               </div>
             </template>
@@ -132,4 +133,7 @@ export default {
 
 .tag-chips-wrapper
   margin-top: 16px
+
+.tag-candidate
+  width: 100%
 </style>
