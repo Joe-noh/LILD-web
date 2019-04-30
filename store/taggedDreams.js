@@ -1,7 +1,7 @@
 import { createState, createMutations, createActions } from './dreamList'
 
-export const state = createState('/v1/dreams')
+export const state = createState()
 
 export const mutations = createMutations()
 
-export const actions = createActions('feed')
+export const actions = createActions('taggedDreams')

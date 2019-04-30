@@ -34,19 +34,21 @@ export default {
   },
   computed: {
     ...mapState({
-      dreams: state => state.feed.dreams,
+      dreams: state => state.taggedDreams.dreams,
       isLoggedIn: state => state.currentUser.isLoggedIn
     })
   },
   async fetch({ store }) {
     await store.dispatch('header/feed')
+    store.commit('taggedDreams/clear')
   },
   methods: {
     async fetchMore(infiniteLoader) {
+      this.$store.commit('taggedDreams/setPath', { path: `/v1/tags/${this.$route.params.tagId}/dreams` })
       let result
 
       try {
-        result = await this.$store.dispatch('feed/fetchMoreDreams')
+        result = await this.$store.dispatch('taggedDreams/fetchMoreDreams')
       } catch (e) {
         console.log(e)
       } finally {
