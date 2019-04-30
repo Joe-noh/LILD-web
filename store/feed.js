@@ -3,7 +3,8 @@ export const state = () => ({
   cursor: {
     before: null,
     after: null
-  }
+  },
+  hasMore: false
 })
 
 export const mutations = {
@@ -12,7 +13,7 @@ export const mutations = {
   },
 
   appendDreams(state, { dreams }) {
-    state.dreams.concat(dreams)
+    state.dreams = state.dreams.concat(dreams)
   },
 
   prependDream(state, { dream }) {
@@ -21,13 +22,20 @@ export const mutations = {
 
   setCursor(state, { cursor }) {
     state.cursor = cursor
+  },
+
+  setHasMore(state, { hasMore }) {
+    state.hasMore = hasMore
   }
 }
 
 export const actions = {
-  async fetchDreams({ commit }) {
-    const { dreams, metadata } = await this.$axios.$get('/v1/dreams')
-    commit('setDreams', { dreams })
-    commit('setCursor', { metadata })
+  async fetchMoreDreams({ state, commit }) {
+    const params = state.cursor ? { before: state.cursor.after } : {}
+    const { dreams, metadata } = await this.$axios.$get('/v1/dreams', { params })
+
+    commit('appendDreams', { dreams })
+    commit('setCursor', { cursor: metadata })
+    commit('setHasMore', { hasMore: dreams.length !== 0 })
   }
 }

@@ -5,6 +5,7 @@
         <img :src="dream.user.avatarUrl">
       </v-avatar>
       <v-layout column>
+        <!-- eslint-disable-next-line vue/singleline-html-element-content-newline -->
         <p class="dream-card__body mb-2">{{ dream.body }}</p>
         <v-layout row wrap class="mb-2">
           <a v-for="tag in dream.tags" :key="tag.id" class="mr-1 dream-card__tag">
