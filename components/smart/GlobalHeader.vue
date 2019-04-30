@@ -73,7 +73,9 @@
         <v-icon>arrow_back</v-icon>
       </v-btn>
 
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
+      <v-toolbar-title class="toolbar-title">
+        {{ title }}
+      </v-toolbar-title>
 
       <v-spacer />
 
@@ -163,4 +165,8 @@ export default {
 .logout-tile
   position: absolute
   bottom: 0
+
+.toolbar-title
+  font-family: serif
+  color: $lild-colors.red
 </style>

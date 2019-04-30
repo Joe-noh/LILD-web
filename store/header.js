@@ -22,5 +22,10 @@ export const actions = {
   newDream({ commit }) {
     commit('setTitle', { title: null })
     commit('setMode', { mode: 'dream/new' })
+  },
+
+  taggedDreams({ commit }, { tag }) {
+    commit('setTitle', { title: `#${tag.name}` })
+    commit('setMode', { mode: 'feed' })
   }
 }

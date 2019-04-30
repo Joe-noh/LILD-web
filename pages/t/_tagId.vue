@@ -34,13 +34,15 @@ export default {
   },
   computed: {
     ...mapState({
+      tag: state => state.tag,
       dreams: state => state.taggedDreams.dreams,
       isLoggedIn: state => state.currentUser.isLoggedIn
     })
   },
-  async fetch({ store }) {
-    await store.dispatch('header/feed')
-    store.commit('taggedDreams/clear')
+  async mounted() {
+    await this.$store.dispatch('tag/fetch', { id: this.$route.params.tagId })
+    await this.$store.dispatch('header/taggedDreams', { tag: this.tag })
+    this.$store.commit('taggedDreams/clear')
   },
   methods: {
     async fetchMore(infiniteLoader) {
