@@ -8,9 +8,9 @@
         <!-- eslint-disable-next-line vue/singleline-html-element-content-newline -->
         <p class="dream-card__body mb-2">{{ dream.body }}</p>
         <v-layout row wrap class="mb-2">
-          <a v-for="tag in dream.tags" :key="tag.id" class="mr-1 dream-card__tag">
+          <nuxt-link v-for="tag in dream.tags" :key="tag.id" :to="{ name: 't-tagId', params: { tagId: tag.id } }" class="mr-1 dream-card__tag">
             #{{ tag.name }}
-          </a>
+          </nuxt-link>
         </v-layout>
         <v-layout row justify-end align-start>
           <v-icon v-if="dream.secret" size="18" class="mr-2 dream-card__visibility">
