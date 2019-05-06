@@ -21,5 +21,8 @@ describe('DreamCard', () => {
     dream.tags.forEach(tag => {
       expect(text).toEqual(expect.stringContaining('#' + tag.name))
     })
+
+    const avatar = wrapper.find('img')
+    expect(avatar.attributes().src).toEqual(dream.user.avatarUrl)
   })
 })
