@@ -12,7 +12,15 @@ export function createState(path) {
 export function createMutations() {
   return {
     appendDreams(state, { dreams }) {
-      state.dreams = state.dreams.concat(dreams)
+      const knowns = {}
+      state.dreams = state.dreams.concat(dreams).reduce((acc, dream) => {
+        if (knowns[dream.id]) {
+          return acc
+        } else {
+          knowns[dream.id] = true
+          return [...acc, dream]
+        }
+      }, [])
     },
 
     prependDream(state, { dream }) {
