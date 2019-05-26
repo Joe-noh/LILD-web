@@ -68,10 +68,10 @@
       </template>
     </v-navigation-drawer>
     <v-toolbar dense app :color="colors.white">
-      <v-toolbar-side-icon v-if="showMenuButton" @click="open = !open" />
-      <v-btn v-else-if="showBackButton" icon @click="back">
+      <v-btn v-if="isDreamForm" icon @click="back">
         <v-icon>arrow_back</v-icon>
       </v-btn>
+      <v-toolbar-side-icon v-else @click="open = !open" />
 
       <v-toolbar-title class="toolbar-title">
         {{ title }}
@@ -79,7 +79,7 @@
 
       <v-spacer />
 
-      <v-btn v-if="showSubmitButton" depressed round small dark class="text-none pl-3 pr-3" @click="submitDream">
+      <v-btn v-if="isDreamForm" depressed round small dark class="text-none pl-3 pr-3" @click="submitDream">
         {{ submitButtonLabel }}
       </v-btn>
       <v-avatar v-else-if="currentUser.isLoggedIn" size="36" @click="toMyPage">
@@ -105,17 +105,9 @@ export default {
     ...mapState({
       title: state => state.header.title,
       mode: state => state.header.mode,
-      currentUser: state => state.currentUser
+      currentUser: state => state.currentUser,
+      isDreamForm: state => state.header.isDreamForm
     }),
-    showMenuButton() {
-      return this.mode !== 'dream/new'
-    },
-    showBackButton() {
-      return this.mode === 'dream/new'
-    },
-    showSubmitButton() {
-      return this.mode.startsWith('dream/')
-    },
     submitButtonLabel() {
       return this.$store.state.dreamForm.secret ? 'Save as Private' : 'Save'
     }

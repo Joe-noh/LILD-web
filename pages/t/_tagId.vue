@@ -38,10 +38,11 @@ export default {
       isLoggedIn: state => state.currentUser.isLoggedIn
     })
   },
-  async mounted() {
-    this.$store.commit('taggedDreams/clear')
-    await this.$store.dispatch('tag/fetch', { id: this.$route.params.tagId })
-    await this.$store.dispatch('header/taggedDreams', { tag: this.tag })
+  async fetch({ store, params }) {
+    store.commit('taggedDreams/clear')
+    await store.dispatch('tag/fetch', { id: params.tagId })
+    store.commit('header/title', `#${store.state.tag.name}`)
+    store.commit('header/isDreamForm', false)
   },
   methods: {
     async fetchMore(infiniteLoader) {

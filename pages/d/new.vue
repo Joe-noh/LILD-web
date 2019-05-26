@@ -25,7 +25,8 @@ export default {
   async fetch({ store }) {
     const today = format(new Date(), 'YYYY-MM-DD')
 
-    await store.dispatch('header/newDream')
+    store.commit('header/title', '')
+    store.commit('header/isDreamForm', true)
     await store.dispatch('dreamForm/initialize', { date: today })
   },
   beforeRouteLeave(to, from, next) {

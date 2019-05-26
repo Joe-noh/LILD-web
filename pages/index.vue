@@ -37,8 +37,9 @@ export default {
       isLoggedIn: state => state.currentUser.isLoggedIn
     })
   },
-  async fetch({ store }) {
-    await store.dispatch('header/feed')
+  fetch({ store }) {
+    store.commit('header/title', '')
+    store.commit('header/isDreamForm', false)
   },
   methods: {
     async fetchMore(infiniteLoader) {
