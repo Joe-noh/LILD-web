@@ -9,7 +9,7 @@
         </infinite-loading>
       </no-ssr>
     </v-content>
-    <new-dream-button v-if="isLoggedIn" />
+    <new-dream-button v-if="isMyPage" />
   </v-app>
 </template>
 
@@ -37,7 +37,10 @@ export default {
       user: state => state.user,
       dreams: state => state.userDreams.dreams,
       isLoggedIn: state => state.currentUser.isLoggedIn
-    })
+    }),
+    isMyPage() {
+      return this.isLoggedIn && this.user.id === this.$route.params.userId
+    }
   },
   async mounted() {
     this.$store.commit('userDreams/clear')
