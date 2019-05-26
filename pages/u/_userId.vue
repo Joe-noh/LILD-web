@@ -45,7 +45,7 @@ export default {
   async mounted() {
     this.$store.commit('userDreams/clear')
     await this.$store.dispatch('user/fetch', { id: this.$route.params.userId })
-    await this.$store.dispatch('header/userDreams')
+    await this.$store.dispatch('header/userDreams', { user: this.user })
   },
   methods: {
     async fetchMore(infiniteLoader) {

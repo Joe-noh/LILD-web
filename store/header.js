@@ -29,8 +29,8 @@ export const actions = {
     commit('setMode', { mode: 'feed' })
   },
 
-  userDreams({ commit }) {
-    commit('setTitle', { title: '' })
+  userDreams({ commit }, { user }) {
+    commit('setTitle', { title: user.name })
     commit('setMode', { mode: 'user' })
   }
 }
