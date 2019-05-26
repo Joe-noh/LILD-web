@@ -41,10 +41,11 @@ export default {
       return this.isLoggedIn && this.user.id === this.$route.params.userId
     }
   },
-  async mounted() {
-    this.$store.commit('userDreams/clear')
-    await this.$store.dispatch('user/fetch', { id: this.$route.params.userId })
-    await this.$store.dispatch('header/userDreams', { user: this.user })
+  async fetch({ store, params }) {
+    store.commit('userDreams/clear')
+    await this.$store.dispatch('user/fetch', { id: params.userId })
+    store.commit('header/title', store.state.user.name)
+    store.commit('header/isDreamForm', false)
   },
   methods: {
     async fetchMore(infiniteLoader) {

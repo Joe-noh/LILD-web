@@ -1,15 +1,15 @@
 export const state = () => ({
   title: '',
-  mode: ''
+  isDreamForm: false
 })
 
 export const mutations = {
-  setTitle(state, { title }) {
+  title(state, title) {
     state.title = title
   },
 
-  setMode(state, { mode }) {
-    state.mode = mode
+  isDreamForm(state, bool) {
+    state.isDreamForm = bool
   }
 }
 
