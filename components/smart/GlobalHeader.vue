@@ -165,6 +165,7 @@ export default {
 .logout-tile
   position: absolute
   bottom: 0
+  width: 100%
 
 .toolbar-title
   font-family: serif
