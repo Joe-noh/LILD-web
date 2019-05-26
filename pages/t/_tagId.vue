@@ -28,7 +28,6 @@ export default {
   transition: 'fade',
   data() {
     return {
-      drawer: false,
       isLoading: false
     }
   },
