@@ -27,5 +27,10 @@ export const actions = {
   taggedDreams({ commit }, { tag }) {
     commit('setTitle', { title: `#${tag.name}` })
     commit('setMode', { mode: 'feed' })
+  },
+
+  userDreams({ commit }, { user }) {
+    commit('setTitle', { title: user.name })
+    commit('setMode', { mode: 'user' })
   }
 }

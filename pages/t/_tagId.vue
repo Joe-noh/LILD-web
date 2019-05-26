@@ -28,7 +28,6 @@ export default {
   transition: 'fade',
   data() {
     return {
-      drawer: false,
       isLoading: false
     }
   },
@@ -40,9 +39,9 @@ export default {
     })
   },
   async mounted() {
+    this.$store.commit('taggedDreams/clear')
     await this.$store.dispatch('tag/fetch', { id: this.$route.params.tagId })
     await this.$store.dispatch('header/taggedDreams', { tag: this.tag })
-    this.$store.commit('taggedDreams/clear')
   },
   methods: {
     async fetchMore(infiniteLoader) {

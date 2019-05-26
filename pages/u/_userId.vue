@@ -9,7 +9,7 @@
         </infinite-loading>
       </no-ssr>
     </v-content>
-    <new-dream-button v-if="isLoggedIn" />
+    <new-dream-button v-if="isMyPage" />
   </v-app>
 </template>
 
@@ -33,19 +33,26 @@ export default {
   },
   computed: {
     ...mapState({
-      dreams: state => state.feed.dreams,
+      user: state => state.user,
+      dreams: state => state.userDreams.dreams,
       isLoggedIn: state => state.currentUser.isLoggedIn
-    })
+    }),
+    isMyPage() {
+      return this.isLoggedIn && this.user.id === this.$route.params.userId
+    }
   },
-  async fetch({ store }) {
-    await store.dispatch('header/feed')
+  async mounted() {
+    this.$store.commit('userDreams/clear')
+    await this.$store.dispatch('user/fetch', { id: this.$route.params.userId })
+    await this.$store.dispatch('header/userDreams', { user: this.user })
   },
   methods: {
     async fetchMore(infiniteLoader) {
+      this.$store.commit('userDreams/setPath', { path: `/v1/users/${this.$route.params.userId}/dreams` })
       let result
 
       try {
-        result = await this.$store.dispatch('feed/fetchMoreDreams')
+        result = await this.$store.dispatch('userDreams/fetchMoreDreams')
       } catch (e) {
         console.log(e)
       } finally {
