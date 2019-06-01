@@ -1,6 +1,7 @@
 <template>
   <v-app light>
     <v-content>
+      <profile-header :user="user" class="mt-3" />
       <dream-list :dreams="dreams" />
       <no-ssr>
         <infinite-loading spinner="spiral" @infinite="fetchMore">
@@ -16,11 +17,13 @@
 <script>
 import { mapState } from 'vuex'
 import infiniteLoading from 'vue-infinite-loading'
+import ProfileHeader from '@/components/dumb/ProfileHeader.vue'
 import DreamList from '@/components/dumb/DreamList.vue'
 import NewDreamButton from '@/components/dumb/NewDreamButton.vue'
 
 export default {
   components: {
+    ProfileHeader,
     DreamList,
     NewDreamButton,
     infiniteLoading
@@ -43,9 +46,9 @@ export default {
   },
   async fetch({ store, params }) {
     store.commit('userDreams/clear')
-    await this.$store.dispatch('user/fetch', { id: params.userId })
-    store.commit('header/title', store.state.user.name)
+    store.commit('header/title', '')
     store.commit('header/isDreamForm', false)
+    await store.dispatch('user/fetch', { id: params.userId })
   },
   methods: {
     async fetchMore(infiniteLoader) {

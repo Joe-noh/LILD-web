@@ -1,9 +1,11 @@
 <template>
   <v-card class="pa-3 mb-3 fluid dream-card">
     <v-layout row align-start>
-      <v-avatar size="36" class="mr-3">
-        <img :src="dream.user.avatarUrl">
-      </v-avatar>
+      <nuxt-link :to="{ name: 'u-userId', params: { userId: dream.user.id } }">
+        <v-avatar size="36" class="mr-3">
+          <img :src="dream.user.avatarUrl">
+        </v-avatar>
+      </nuxt-link>
       <v-layout column>
         <!-- eslint-disable-next-line vue/singleline-html-element-content-newline -->
         <p class="dream-card__body mb-2">{{ dream.body }}</p>
