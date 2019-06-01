@@ -43,9 +43,9 @@ export default {
   },
   async fetch({ store, params }) {
     store.commit('userDreams/clear')
-    await this.$store.dispatch('user/fetch', { id: params.userId })
-    store.commit('header/title', store.state.user.name)
+    store.commit('header/title', '')
     store.commit('header/isDreamForm', false)
+    await store.dispatch('user/fetch', { id: params.userId })
   },
   methods: {
     async fetchMore(infiniteLoader) {
