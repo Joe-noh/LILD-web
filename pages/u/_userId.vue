@@ -1,6 +1,7 @@
 <template>
   <v-app light>
     <v-content>
+      <profile-header :user="user" class="mt-3" />
       <dream-list :dreams="dreams" />
       <no-ssr>
         <infinite-loading spinner="spiral" @infinite="fetchMore">
@@ -16,11 +17,13 @@
 <script>
 import { mapState } from 'vuex'
 import infiniteLoading from 'vue-infinite-loading'
+import ProfileHeader from '@/components/dumb/ProfileHeader.vue'
 import DreamList from '@/components/dumb/DreamList.vue'
 import NewDreamButton from '@/components/dumb/NewDreamButton.vue'
 
 export default {
   components: {
+    ProfileHeader,
     DreamList,
     NewDreamButton,
     infiniteLoading
